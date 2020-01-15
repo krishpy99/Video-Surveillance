@@ -1,5 +1,6 @@
 package com.example.surveillance;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
@@ -100,5 +102,26 @@ mRegister.setOnClickListener(new View.OnClickListener() {
                 finish();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed(){
+        final AlertDialog.Builder builder = new AlertDialog.Builder(RegistrationActivity.this);
+        builder.setMessage("Are you sure you want to exit?");
+        builder.setCancelable(true);
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+        AlertDialog ad = builder.create();
+        ad.show();
     }
 }

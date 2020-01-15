@@ -1,6 +1,7 @@
 package com.example.surveillance;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
@@ -40,6 +42,8 @@ public class    LoginActivity extends AppCompatActivity {
         mProgress=findViewById(R.id.progress1);
         fAuth=FirebaseAuth.getInstance();
 
+
+
         mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,6 +66,7 @@ public class    LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             Toast.makeText(LoginActivity.this,"Logged in Successfully",Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(),NotificationsActivity.class));
+                            finish();
                             Animatoo.animateInAndOut(LoginActivity.this);
                         }
                         else {
@@ -84,9 +89,30 @@ public class    LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this, RegistrationActivity.class));
+                finish();
                 Animatoo.animateSlideRight(LoginActivity.this);
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed(){
+        final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+        builder.setMessage("Are you sure you want to exit?");
+        builder.setCancelable(true);
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
                 finish();
             }
         });
+        AlertDialog ad = builder.create();
+        ad.show();
     }
 }
