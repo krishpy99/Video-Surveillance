@@ -25,6 +25,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     String desc;
     TextView vio;
     TextView vnum;
+    Integer lat;
+    Integer lon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         vio.setText(title);
         vnum= findViewById(R.id.vnum);
         vnum.setText(desc);
+        lat=b.getInt("lat");
+        lon=b.getInt("lon");
+
     }
 
 
@@ -49,21 +54,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng location = new LatLng(lat, lon);
+        mMap.setMinZoomPreference(15);
+        mMap.addMarker(new MarkerOptions().position(location).title("Marker in Sydney"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
+
     }
 
-    public void logout(View view) {
-        FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(getApplicationContext(),LoginActivity.class));
-        Animatoo.animateShrink(MapsActivity.this);
-        finish();
-    }
+
 
     @Override
     public void onBackPressed(){
         finish();
-        startActivity(new Intent(getApplicationContext(),NotificationsActivity.class));
     }
 }

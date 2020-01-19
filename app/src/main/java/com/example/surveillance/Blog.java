@@ -4,12 +4,16 @@ public class Blog {
 
     private  String title;
     private  String desc;
+    private Integer lat;
+    private Integer lon;
     private  String image;
 
-    public Blog(String title, String desc, String image) {
+    public Blog(String title, String desc, String image, Integer lat, Integer lon) {
         this.title = title;
         this.desc = desc;
         this.image = image;
+        this.lat = lat;
+        this.lon = lon;
     }
 
     public String getTitle() {
@@ -36,8 +40,18 @@ public class Blog {
         this.image = image;
     }
 
+    public Integer getlat() {
+        return lat;
+    }
+
+    public Integer getlon(){
+        return lon;
+    }
+
+
+
     public Blog(){
 
-
     }
+
 }
