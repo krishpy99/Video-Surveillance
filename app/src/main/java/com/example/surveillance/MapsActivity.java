@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -20,6 +21,10 @@ import com.google.firebase.auth.FirebaseAuth;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    String title;
+    String desc;
+    TextView vio;
+    TextView vnum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +34,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        Bundle b=getIntent().getExtras();
+        title=b.getString("title");
+        desc=b.getString("desc");
+        vio= findViewById(R.id.vio);
+        vio.setText(title);
+        vnum= findViewById(R.id.vnum);
+        vnum.setText(desc);
     }
 
 
@@ -52,5 +64,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onBackPressed(){
         finish();
+        startActivity(new Intent(getApplicationContext(),NotificationsActivity.class));
     }
 }
