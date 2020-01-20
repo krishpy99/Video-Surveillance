@@ -27,16 +27,16 @@
             android:background="#424242"
             />
 
-          <TextView
-              android:paddingTop="5dp"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:id="@+id/post_title"
-              android:text="TITLE"
-              android:textColor="#212121"
-              android:textSize="26dp"
-              android:layout_marginLeft="12dp"
-              />
+        <TextView
+            android:paddingTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/post_title"
+            android:text="TITLE"
+            android:textColor="#212121"
+            android:textSize="26dp"
+            android:layout_marginLeft="12dp"
+            />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

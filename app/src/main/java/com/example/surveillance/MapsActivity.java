@@ -22,11 +22,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     String title;
-    String desc;
+    String vnum;
+    String name;
+    String phno;
+    String addr;
+    String start_time;
+    String end_time;
     TextView vio;
-    TextView vnum;
-    Integer lat;
-    Integer lon;
+    TextView vnumt;
+    TextView namet;
+    TextView phnot;
+    TextView addrt;
+    TextView start_timet;
+    TextView end_timet;
+    Float lat;
+    Float lon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,14 +48,28 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
         Bundle b=getIntent().getExtras();
         title=b.getString("title");
-        desc=b.getString("desc");
+        vnum=b.getString("vnum");
+        name=b.getString("name");
+        phno=b.getString("number");
+        addr=b.getString("address");
+        start_time=b.getString("start_time");
+        end_time=b.getString("end_time");
+        lat=b.getFloat("lat");
+        lon=b.getFloat("lon");
         vio= findViewById(R.id.vio);
+        vnumt= findViewById(R.id.vnum);
+        namet= findViewById(R.id.name);
+        phnot= findViewById(R.id.phno);
+        addrt= findViewById(R.id.addr);
+        start_timet= findViewById(R.id.start_time);
+        end_timet= findViewById(R.id.end_time);
         vio.setText(title);
-        vnum= findViewById(R.id.vnum);
-        vnum.setText(desc);
-        lat=b.getInt("lat");
-        lon=b.getInt("lon");
-
+        vnumt.setText(vnum);
+        namet.setText(name);
+        phnot.setText(phno);
+        addrt.setText(addr);
+        start_timet.setText(start_time);
+        end_timet.setText(end_time);
     }
 
 
@@ -56,7 +80,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Add a marker in Sydney and move the camera
         LatLng location = new LatLng(lat, lon);
         mMap.setMinZoomPreference(15);
-        mMap.addMarker(new MarkerOptions().position(location).title("Marker in Sydney"));
+        mMap.addMarker(new MarkerOptions().position(location).title(title));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
 
     }
